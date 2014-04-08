@@ -1,0 +1,42 @@
+.\" Generated with Ronnjs 0.3.8
+.\" http://github.com/kapouer/ronnjs/
+.
+.TH "RTAIL" "1" "April 2014" "" ""
+.
+.SH "NAME"
+\fBrtail\fR \-\- Tail file over ssh
+.
+.SH "SYNOPSIS"
+\fBrtail\fR [\-hvV] [ssh_options] [user@]<host> [tail_options] [files \.\.\.]
+.
+.SH "OPTIONS"
+  \fB\-v, \-\-verbose\fR           enable verbose output
+  \fB\-h, \-\-help\fR              display this message
+  \fB\-V, \-\-version\fR           output version
+.
+.P
+  \fB[ssh_options]\fR           ssh options
+  \fB[tail_options]\fR          tail options
+.
+.SH "USAGE"
+  $ rtail somehost\.com \-f /var/log/host\.log
+.
+.SH "AUTHOR"
+.
+.IP "\(bu" 4
+Joseph Werle \fIjoseph\.werle@gmail\.com\fR
+.
+.IP "" 0
+.
+.SH "REPORTING BUGS"
+.
+.IP "\(bu" 4
+https://github\.com/jwerle/rtail/issues
+.
+.IP "" 0
+.
+.SH "SEE ALSO"
+  \fBssh\fR(1), \fBtail\fR(1)
+.
+.SH "LICENSE"
+  MIT (C) Copyright Joseph Werle 2014
