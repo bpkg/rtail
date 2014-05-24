@@ -1,0 +1,7 @@
+{
+  "name": "rtail",
+  "version": "0.0.1",
+  "description": "Easily tail a file over ssh",
+  "scripts": [ "rtail.sh" ],
+  "install": "make install"
+}

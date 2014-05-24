@@ -1,6 +1,5 @@
 #!/bin/bash
 
-PROG=`basename $0`
 VERSION="0.0.1"
 NULL=/dev/null
 STDIN=0
@@ -35,7 +34,7 @@ version () {
 
 ## outputs program usage
 usage () {
-  echo "usage: ${PROG} [-hvV] [ssh_options] [user@]<host> [tail_options] [files ...]"
+  echo "usage: rtail [-hvV] [ssh_options] [user@]<host> [tail_options] [files ...]"
 }
 
 ## outputs verbose information
@@ -89,12 +88,12 @@ parse_opts () {
 
       -h|--help)
         usage 1
-        exit 1
+        return 1
         ;;
 
       -V|--version)
         version
-        exit 0
+        return 0
         ;;
 
       -v|--verbose)
@@ -105,7 +104,12 @@ parse_opts () {
 
       ## catch all
       *)
-        if [[ -z "$host" ]]; then
+
+        if [ "-" = "${arg:0:1}" ]; then
+          perror "Unknown argument \`${arg}'"
+          usage
+          return 1
+        elif [[ -z "$host" ]]; then
           SSH_ARGS+="$1";
         elif [[ -z "$files" ]]; then
           TAIL_ARGS+="$1"
@@ -119,17 +123,17 @@ parse_opts () {
 
 rtail () {
   ## opts
-  parse_opts "$@"
+  parse_opts "$@" || return 1
 
   ## detect missing variables
   if [[ -z $host ]]; then
     perror "Missing host"
     usage
-    exit 1
+    return 1
   elif [[ -z $files ]]; then
     perror "Missing input file(s)"
     usage
-    exit 1
+    return 1
   fi
 
   ## build command
@@ -146,6 +150,8 @@ rtail () {
   $cmd
 }
 
-## main
-rtail "$@"
-exit $?
+if [[ ${BASH_SOURCE[0]} != $0 ]]; then
+  export -f rtail
+else
+  rtail "$@"
+fi

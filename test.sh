@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RTAIL=./rtail
+RTAIL=./rtail.sh
 HOST=localhost
 FILE=`pwd`/test.txt
 

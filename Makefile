@@ -9,13 +9,13 @@ test:
 	./test.sh
 
 install:
-	install $(BIN) $(PREFIX)/bin
-	install $(BIN).1 $(MANPREFIX)
+	cp rtail.sh $(PREFIX)/bin/$(BIN)
+	cp rtail.1 $(MANPREFIX)/$(BIN).1
 
 uninstall:
 	rm -f $(PREFIX)/bin/$(BIN)
 	rm -f $(MANPREFIX)/$(BIN).1
 
 man:
-	@curl -# -F page=@$(BIN).1.md -o $(BIN).1 http://mantastic.herokuapp.com
-	@echo "$(BIN).1"
+	@curl -# -F page=@rtail.1.md -o rtail.1 http://mantastic.herokuapp.com
+	@echo "rtail.1"
