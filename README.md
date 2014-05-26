@@ -5,6 +5,14 @@ Easily tail a file over ssh
 
 ## install
 
+[bpkg](https://github.com/bpkg/bpkg)
+
+```sh
+$ bpkg install rtail -g
+```
+
+or
+
 ```sh
 $ make install
 ```
