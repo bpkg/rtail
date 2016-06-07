@@ -93,7 +93,7 @@ parse_opts () {
 
       -V|--version)
         version
-        return 0
+        exit
         ;;
 
       -v|--verbose)
@@ -105,14 +105,14 @@ parse_opts () {
       ## catch all
       *)
 
-        if [ "-" = "${arg:0:1}" ]; then
-          perror "Unknown argument \`${arg}'"
-          usage
-          return 1
-        elif [[ -z "$host" ]]; then
+        if [[ -z "$host" ]]; then
           SSH_ARGS+="$1";
         elif [[ -z "$files" ]]; then
           TAIL_ARGS+="$1"
+        elif [ "-" = "${arg:0:1}" ]; then
+          perror "Unknown argument \`${arg}'"
+          usage
+          return 1
         fi
         shift
         ;;
