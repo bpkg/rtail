@@ -2,6 +2,7 @@
   "name": "rtail",
   "version": "0.0.2",
   "description": "Easily tail a file over ssh",
+  "global": true,
   "scripts": [ "rtail.sh" ],
   "install": "make install"
 }
