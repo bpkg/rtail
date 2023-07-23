@@ -9,6 +9,7 @@ test:
 	./test.sh
 
 install:
+	mkdir -p $(PREFIX)/bin $(MANPREFIX)
 	cp rtail.sh $(PREFIX)/bin/$(BIN)
 	cp rtail.1 $(MANPREFIX)/$(BIN).1
 
